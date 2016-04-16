@@ -2,12 +2,17 @@ var lines = []; //we declare lines as an empty array
 var img ;
 var img2;
 var img3;
+searchTerm = "Coney Island";
 //preload gets called BEFORE setup
 function preload() {
   //loadStrings returns an array of Strings from our text file
   //you must have a local file in order for this function to work
   lines = loadStrings('assets/thebelljar.txt');
   // SETUP PRELOAD ENDS
+  
+  reco = loadJSON('assets/reco.json');
+  belljar = loadJSON('assets/belljar.json');
+  
 }
 var alpha = 1;
 var count = 0;
@@ -18,7 +23,7 @@ function setup() {
   createCanvas(375, 667);
   background(25);
   // rect()
-  textAlign(CENTER, TOP);
+  
   
   img = loadImage("assets/belljar.jpg");  // Load the image
   img2 = loadImage("assets/header.jpg");//load the image
@@ -58,7 +63,7 @@ function draw() {
   // FOR LOOP THAT LOOKS FOR SEARCH TERM IN EACH SENTENCE AND SAVES MATCHES TO NEW ARRAY
   for (var i = 0; i < sentences.length; i++) {
     //your code here
-    var n = sentences[i].search("Madison Avenue");
+    var n = sentences[i].search(searchTerm);
       // text(n,0,100+(10*i));
       if(n != -1) {
       results.push(sentences[i]);
@@ -77,6 +82,23 @@ function draw() {
   rect(18,300,340,190,20);
   triangle(100, 300, 120, 150, 86, 300);
   noStroke();
+  textAlign(CENTER, TOP);
+  runtime = parseInt(belljar.product.runtime_length_min); //Get book runtime
+  runtime = runtime - 100;
+  // GET RUNTIME AND BLACK PATCH
+  fill(20);
+  rect(18,75,340,20);
+  runHours = Math.floor(runtime/60);
+  runMinutes = runtime%60;
+  textSize(12); fill(110);
+  text(runHours + " hours and " + runMinutes + " mins remaining",185,75);
+  // -----
+  
+  // CHAPTER NUMBER
+  fill(20);
+  rect(135,135,100,24);
+  textSize(12); fill(110);
+  text("Chapter 9 of 20",185,140);
   
   minimum = getMinOfArray(resLength);
   fill(200);
@@ -86,7 +108,7 @@ function draw() {
     if (resLength[i] == minimum) {
       fill(40);
       textSize(15);
-      text("You're at Madison Avenue!\n\n\n\"" + results[i] + "\"\n\n- Sylvia Plath, Bell Jar",25,8+(28*x),330,640);
+      text("You're at "+searchTerm+"!\n\n\n\"" + results[i] + "\"\n\n- Sylvia Plath, " + reco.recommendations[2].title,25,8+(28*x),330,640);
     }
 
   }

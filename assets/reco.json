@@ -1,0 +1,29 @@
+{
+    "recommendations": [
+        {
+            "asin": "B002V1NHYC", 
+            "title": "The Abolition of Man & The Great Divorce"
+        }, 
+        {
+            "asin": "B00DDTGKBI", 
+            "title": "Understanding the Mysteries of Human Behavior"
+        }, 
+        {
+            "asin": "B01A9ATMCM", 
+            "title": "The Bell Jar"
+        }, 
+        {
+            "asin": "B00DGBSYGC", 
+            "subtitle": "The New York Landmark and the Incomparable City That Arose with It", 
+            "title": "The Flatiron"
+        }, 
+        {
+            "asin": "B002V0K796", 
+            "title": "Reflections on the Psalms"
+        }
+    ], 
+    "response_groups": [
+        "product_desc", 
+        "always-returned"
+    ]
+}
